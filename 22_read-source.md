@@ -1,0 +1,64 @@
+# Read the source
+
+Often when you encounter an error and you do not immediately understand why or
+what it is saying, the first thing you should try is to search for the error
+message. You can search the error directly on google, or search on specific sites like
+<https://community.rstudio.com> or <https://stackoverflow.com>.
+
+Another option is to GitHub search to shed light on your problem.
+
+## GitHub search
+
+GitHub allows you to [search](https://github.com/search) code, repositories,
+and issues which can often reveal useful insights into problems.
+
+Doing a generic search is often fruitful, but you can often get more pertinent
+results with a more targeted approach.
+
+## Where things exist in the R source
+
+The SVN repository used by the R core team to develop R is mirrored on GitHub by Winston Chang at
+<https://github.com/wch/r-source>. This means that all the code used by your
+local R session (including compiled code) is searchable.
+
+The R source uses a complicated layout and contains the source of all the code
+in base R ([`src/main`](https://github.com/wch/r-source/tree/trunk/src/main)) as well as the set of packages included in base R, such
+as stats, graphics, utils and others ([`src/library/*`](https://github.com/wch/r-source/tree/trunk/src/library)). It also contains all of
+the documentation included in R including Writing R extensions, R internals and
+R admin guides ([`doc/manual`](https://github.com/wch/r-source/tree/trunk/doc/manual)).
+
+<div class="rmdinfo">
+<p><a href="https://raw.githubusercontent.com/jimhester/wtf-read-source/master/01_read-source_spartan.R">Try the activity</a> <code>usethis::use_course(&quot;rstd.io/wtf-read-source&quot;)</code></p>
+<p>to search the R source for code and documentation.</p>
+</div>
+
+## Where things exist in CRAN packages
+
+You can find the development home of most R packages by looking at the `URL`
+field in the package DESCRIPTION, as can be seen on the CRAN landing page (e.g.
+[devtools landing page](https://cran.r-project.org/package=readr)). The
+`BugReports` field will give you a direct link to the issue page where you
+should report any issues found with the package.
+
+In addition all code for CRAN packages is mirrored on GitHub by Gábor Csárdi at
+<https://github.com/cran>, which means all the code for CRAN packages is also
+searchable.
+
+All R code in packages is kept in `R/`. In addition if the package is using
+[roxygen](http://klutometis.github.io/roxygen/) the source code will also
+contain roxygen comments (`#'`) with the function level documentation.
+
+If a package is _not_ using roxygen (often older packages or those in base R)
+the documentation will be in `.Rd` files in the `man/` directory. (These files
+also exist in roxygen packages, but are generated automatically and should not
+be edited by hand).
+
+If the package uses compiled code it will be in `src/` regardless of what
+language the compiled code is written in.
+
+Long-form documentation in the form of vignettes are stored in `vignettes/`.
+
+<div class="rmdinfo">
+<p><a href="https://raw.githubusercontent.com/jimhester/wtf-read-source/master/02_read-source_spartan.R">Try the activity</a> <code>usethis::use_course(&quot;rstd.io/wtf-read-source&quot;)</code></p>
+<p>to search and find source code and documentation in CRAN packages.</p>
+</div>
